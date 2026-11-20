@@ -4,7 +4,7 @@ The React/Vite client uses Firebase Google sign-in and the AI Pets server for
 membership, coupon redemption, token balance, and Gemini chat. Pet state remains
 in the browser's local storage and synchronized with the server when applicable.
 
-For setup instructions, refer to the [SETUP.md](./SETUP.md) file.
+For setup instructions, refer to the [SETUP.md](../SETUP.md) file.
 
 ## Main Features
 
