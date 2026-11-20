@@ -10,6 +10,7 @@ node_modules/
 .env
 *.local
 *-lock.json
+!skills-lock.json
 
 # Logs
 logs
