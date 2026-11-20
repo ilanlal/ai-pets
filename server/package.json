@@ -1,0 +1,19 @@
+{
+  "name": "ai-pets-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "check": "node --check src/app.js && node --check src/server.js && node --check src/management.js",
+    "test": "node --experimental-test-module-mocks --test"
+  },
+  "dependencies": {
+    "@google/genai": "^1.27.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "firebase-admin": "^13.5.0"
+  }
+}

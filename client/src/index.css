@@ -1,0 +1,33 @@
+:root { font-family: system-ui, sans-serif; color: #431407; background: #fff7ed; }
+body { margin: 0; }
+main { max-width: 480px; margin: 0 auto; padding: 12px; display: grid; gap: 12px; }
+header { display: flex; justify-content: space-between; align-items: center; }
+h1, h2 { margin: 0; }
+h2 { font-size: 1.1rem; text-align: center; }
+.card { background: #fff; border-radius: 16px; padding: 16px; box-shadow: 0 2px 8px #0001; display: grid; gap: 10px; }
+.sound-control { gap: 12px; }
+.sound-toggle { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 64px; font-size: 1.2rem; font-weight: 700; }
+.sound-icon { font-size: 1.8rem; }
+.volume-control { gap: 6px; }
+.volume-control input { width: 100%; accent-color: #f97316; cursor: pointer; }
+button { background: #f97316; color: #fff; border: 0; border-radius: 12px; padding: 10px 14px; font-size: 1rem; cursor: pointer; }
+button:disabled { opacity: 0.5; }
+button:focus-visible, input:focus-visible { outline: 3px solid #9a3412; outline-offset: 2px; }
+header button { background: none; font-size: 1.4rem; }
+input { padding: 10px; border: 1px solid #fdba74; border-radius: 12px; font-size: 1rem; width: 100%; box-sizing: border-box; }
+label { display: grid; gap: 4px; }
+.face { font-size: 6rem; text-align: center; transition: transform 0.3s; }
+.face.happy { animation: bounce 1.2s infinite; }
+.face.excited { animation: shake 0.4s infinite; }
+.face.sad { filter: grayscale(0.5); transform: scale(0.9); }
+.face.sleepy { animation: bounce 3s infinite; opacity: 0.8; }
+.bar { display: grid; grid-template-columns: 70px 1fr; align-items: center; gap: 8px; }
+progress { width: 100%; accent-color: #f97316; }
+.actions { display: flex; gap: 8px; justify-content: center; }
+.msgs { display: grid; gap: 6px; max-height: 260px; overflow-y: auto; }
+.msgs p { margin: 0; padding: 8px 12px; border-radius: 12px; white-space: pre-wrap; max-width: 80%; }
+.msgs .me { background: #ffedd5; justify-self: start; }
+.msgs .pet { background: #fed7aa; justify-self: end; }
+form { display: flex; gap: 8px; }
+@keyframes bounce { 50% { transform: translateY(-12px); } }
+@keyframes shake { 25% { transform: rotate(-8deg); } 75% { transform: rotate(8deg); } }

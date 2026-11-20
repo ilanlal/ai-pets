@@ -1,0 +1,20 @@
+# Node modules
+node_modules/
+
+# Editor directories and files
+.vscode
+.claude
+.agents
+.swiftpm
+.idea
+.env
+*.local
+*-lock.json
+
+# Logs
+logs
+*.log
+
+dist-ssr/
+dist/
+build/
