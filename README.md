@@ -1,10 +1,16 @@
 # AI Pets
 
+![AI Pets Logo](./client/dist/favicon.svg)
+
+Full-stack virtual entity project powered by Gemini AI technologies
+
 ## Overview
 
-AI Pets is a VIRTUAL SUPER INTELLIGENT (VSI) Pet's project. (also known as AI Buddy, AI Companion, AI Friend, etc.)
+AI Pets (also known as AI Buddy, AI Companion, AI Friend, etc.) is a VIRTUAL ENTITY SUPER INTELLIGENT (VE-SI) project.
 
-The goal of the project is to create virtual pets that can interact intelligently with users, simulating real-life pet behavior and learning from user interactions.
+The goal of the project is to create virtual entity that can interact intelligently with users, increase users' empathy and simulate behavior using visual and auditory cues such as sounds and emojis.
+
+The project aims to enhance user empathy and engagement through these intelligent interactions.
 
 ## Full-stack Architecture
 
@@ -19,15 +25,7 @@ The AI Pets project is designed with a full-stack architecture, encompassing bot
 
 ### Back-end (/server)
 
-- AI-driven pet behavior and decision-making
-- Learning from user interactions
-- Context-aware interactions based on user environment and activities
-- Integration with external data sources for enhanced pet behavior
-- Voice and speech recognition for interactive communication with pets
-- Data storage and management for user interactions and pet states
-
-### Deployment Admin (/admin)
-
-- Admin interface for managing AI Pets deployment
-- Configuration and monitoring of server and database
-- User management and access control
+- API endpoints for client interactions
+- Membership and coupon management
+- Token balance tracking
+- Gemini chat integration

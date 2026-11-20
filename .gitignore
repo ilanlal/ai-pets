@@ -11,7 +11,7 @@ node_modules/
 *.local
 *-lock.json
 !skills-lock.json
-
+.firebaserc
 # Logs
 logs
 *.log
