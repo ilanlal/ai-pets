@@ -1,5 +1,5 @@
 {
-  "name": "ai-pets-backend",
+  "name": "ai-pets-server",
   "version": "1.0.0",
   "private": true,
   "type": "module",
