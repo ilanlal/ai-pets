@@ -2,7 +2,17 @@ import { GoogleGenAI } from '@google/genai'
 import { config } from './config.js'
 import { buildPetSystemPrompt } from './pet-prompts.js'
 
-const ai = new GoogleGenAI({ apiKey: config.geminiApiKey })
+let aiClient = null
+
+function getAiClient() {
+  if (!config.geminiApiKey) {
+    throw new Error('Missing required environment variable: GEMINI_API_KEY')
+  }
+  if (!aiClient) {
+    aiClient = new GoogleGenAI({ apiKey: config.geminiApiKey })
+  }
+  return aiClient
+}
 
 function extractUsedTokens(response) {
   const usage = response?.usageMetadata ?? {}
@@ -20,6 +30,7 @@ export async function createPetReply({ message, pet }) {
     throw new Error('message is required.')
   }
 
+  const ai = getAiClient()
   const response = await ai.models.generateContent({
     model: config.geminiModel,
     contents: message.trim(),

@@ -1,3 +1,6 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import cors from 'cors'
 import express from 'express'
 import { config } from './config.js'
@@ -6,12 +9,15 @@ import { subscribeMember, redeemCoupon, consumeTokens } from './billing-service.
 import { createPetReply } from './chat-service.js'
 import management from './management.js'
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const clientDistDir = path.resolve(__dirname, '../../client/dist')
+
 export const app = express()
 
 app.use(
   cors({
     origin(origin, callback) {
-      if (!origin || config.allowedOrigins.includes(origin)) {
+      if (!origin || config.allowedOrigins.length === 0 || config.allowedOrigins.includes(origin)) {
         callback(null, true)
         return
       }
@@ -110,6 +116,17 @@ app.post('/api/chat', requireUser, async (req, res) => {
     res.status(500).json({ error: 'Failed to process chat request.' })
   }
 })
+
+if (fs.existsSync(clientDistDir)) {
+  app.use(express.static(clientDistDir))
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) {
+      next()
+      return
+    }
+    res.sendFile(path.join(clientDistDir, 'index.html'))
+  })
+}
 
 app.use((err, _req, res, _next) => {
   if (err?.message?.startsWith('Origin not allowed by CORS')) {

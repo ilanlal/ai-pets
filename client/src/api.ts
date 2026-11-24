@@ -1,7 +1,7 @@
 import type { User } from 'firebase/auth'
 import type { Mood, Pet } from './pet'
 
-const apiUrl = (import.meta.env.VITE_API_URL || 'http://localhost:8080').replace(/\/+$/, '')
+const apiUrl = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '')
 
 async function request(user: User, path: string, body?: object): Promise<unknown> {
   const token = await user.getIdToken()

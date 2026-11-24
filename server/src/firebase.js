@@ -39,17 +39,43 @@ function buildCredential() {
     return admin.credential.cert(fromFields)
   }
 
-  throw new Error(
-    'Firebase Admin credentials are missing. Set FIREBASE_SERVICE_ACCOUNT_JSON or FIREBASE_PROJECT_ID/FIREBASE_CLIENT_EMAIL/FIREBASE_PRIVATE_KEY.',
+  return null
+}
+
+let firebaseInitialized = false
+const credential = buildCredential()
+
+if (credential) {
+  if (!admin.apps.length) {
+    admin.initializeApp({ credential })
+  }
+  firebaseInitialized = true
+} else {
+  console.warn(
+    '[AI Studio] Firebase Admin credentials not set — running without Firebase backend. Set FIREBASE_SERVICE_ACCOUNT_JSON or FIREBASE_PROJECT_ID/FIREBASE_CLIENT_EMAIL/FIREBASE_PRIVATE_KEY to enable server auth and Firestore.',
   )
 }
 
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: buildCredential(),
-  })
-}
+const unconfiguredError = () =>
+  new Error('Firebase Admin is not configured in this environment.')
 
-export const auth = admin.auth()
-export const db = admin.firestore()
+export const auth = firebaseInitialized
+  ? admin.auth()
+  : {
+      verifyIdToken: async () => {
+        throw unconfiguredError()
+      },
+    }
+
+export const db = firebaseInitialized
+  ? admin.firestore()
+  : {
+      collection: () => {
+        throw unconfiguredError()
+      },
+      runTransaction: async () => {
+        throw unconfiguredError()
+      },
+    }
+
 export { admin }
